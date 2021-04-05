@@ -14,6 +14,7 @@
 //! [`Bundle`]: crate::bundle::Bundle
 
 use bitvec::{array::BitArray, order::Lsb0};
+use pasta_curves::pallas;
 
 /// The value of an individual Orchard note.
 #[derive(Clone, Copy, Debug)]
@@ -31,4 +32,4 @@ pub struct ValueSum(i64);
 
 /// A commitment to a [`ValueSum`].
 #[derive(Debug)]
-pub struct ValueCommitment;
+pub struct ValueCommitment(pub pallas::Affine);
