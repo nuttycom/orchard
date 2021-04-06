@@ -49,15 +49,15 @@ pub trait Authorization {
 
 /// A bundle of actions to be applied to the ledger.
 #[derive(Debug)]
-pub struct Bundle<T: Authorization> {
-    actions: NonEmpty<Action<T::SpendAuth>>,
+pub struct Bundle<SpendAuth, BundleAuth> {
+    actions: NonEmpty<Action<SpendAuth>>,
     flag: Flags,
     value_balance: ValueSum,
     anchor: Anchor,
-    authorization: T,
+    authorization: BundleAuth,
 }
 
-impl<T: Authorization> Bundle<T> {
+impl<T: Authorization> Bundle<T::SpendAuth, T> {
     /// Computes a commitment to the effects of this bundle, suitable for inclusion within
     /// a transaction ID.
     pub fn commitment(&self) -> BundleCommitment {
@@ -84,7 +84,7 @@ impl Authorization for Authorized {
     type SpendAuth = redpallas::Signature<SpendAuth>;
 }
 
-impl Bundle<Authorized> {
+impl Bundle<<Authorized as Authorization>::SpendAuth, Authorized> {
     /// Computes a commitment to the authorizing data within for this bundle.
     ///
     /// This together with `Bundle::commitment` bind the entire bundle.
