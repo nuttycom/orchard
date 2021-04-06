@@ -20,25 +20,25 @@ rustdoc-args = [ "--html-in-header", "katex-header.html" ]
 
 [dependencies]
 aes = "0.6"
-bitvec = "0.20"
+bitvec = "0.22"
 blake2b_simd = "0.5"
-ff = "0.9"
+ff = { git = "https://github.com/nuttycom/ff", branch = "bitvec-0.22" }
 fpe = "0.4"
-group = "0.9"
+group = { git = "https://github.com/nuttycom/group", branch = "bitvec-0.22" }
 nonempty = "0.6"
 subtle = "2.3"
 
 [dependencies.halo2]
-git = "https://github.com/zcash/halo2.git"
-rev = "b079624ea78b4a07d44cb3c725dd734093577062"
+git = "https://github.com/nuttycom/halo2.git"
+branch = "bitvec-0.22"
 
 [dependencies.pasta_curves]
-git = "https://github.com/zcash/pasta_curves.git"
-rev = "0a6b2f6eb5acbe1dabc9e77ed0bcb748cc640196"
+git = "https://github.com/nuttycom/pasta_curves.git"
+branch = "bitvec-0.22"
 
 [dependencies.reddsa]
-git = "https://github.com/str4d/redjubjub.git"
-rev = "f8ff124a52d86e122e0705e8e9272f2099fe4c46"
+git = "https://github.com/nuttycom/redjubjub.git"
+branch = "bitvec-0.22"
 
 [dev-dependencies]
 criterion = "0.3"
